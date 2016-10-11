@@ -21,3 +21,6 @@ N - Node.js
 - Node https://www.npmjs.com/
 - Express http://expressjs.com/en/starter/generator.html
 - bower 
+
+## Commands
+- ssh-keygen //Generate SSH Key
