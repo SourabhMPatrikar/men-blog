@@ -24,3 +24,4 @@ N - Node.js
 
 ## Commands
 - ssh-keygen //Generate SSH Key
+- mongod --dbpath=D:\MEAN\db
