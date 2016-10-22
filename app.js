@@ -4,6 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var MongoClient = require('mongodb').MongoClient;
+// Connection url
+var url = 'mongodb://localhost:27017/men-blog';
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -21,6 +24,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(function(req, res, next){	
+	// Connect using MongoClient
+	MongoClient.connect(url, function(err, db) {
+	 if(err){
+		 console.log(err);
+	 }
+	 req.db = db;
+	 next();
+	});
+});
 
 app.use('/', routes);
 app.use('/users', users);
