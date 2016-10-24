@@ -67,7 +67,6 @@ router.get('URL', function(req, res, next){
 		}
 		else{
 			res.json(docs);
-
 		}
 	});
 });
