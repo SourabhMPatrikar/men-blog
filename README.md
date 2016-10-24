@@ -53,9 +53,9 @@ CRUD is a process of interaction with data base. The word 'CRUD' is a short form
 - **D** (Delete) - *Remove/Delete specific data from web page and database*
 
 ## Read Operation
-[**R** (Read) - *Fatch the data from database and display in web page*]
+[**R** (Read) - *Fetch the data from database and display in web page*]
 
-For this we need a dependence of router after that we have to use <code>get<code> for fatch the data from database, then we have to make a function for retrieve the data from database. start the function with required URL and (req, res, next) then create database connection then mention collection name and use find() for whole data and use find({id, type}) for specific data and call as an toArray and handle the error.
+For this we need a dependence of router after that we have to use <code>get</code> for fetch the data from database, then we have to make a function for retrieve the data from database. start the function with required <code>URL</code> and <code>(req, res, next)</code> then create database connection then mention collection name and use <code>find()</code> for whole data and use <code>find({id, type})</code> for specific data and call as an toArray and handle the error.
 
 <br>
 router.get('<b><i>URL</i></b>', function(req, res, next){
