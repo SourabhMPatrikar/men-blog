@@ -40,3 +40,20 @@ Update POST
 Delete POST
 - /api/post/1
 - /api/category/1
+
+
+
+##Part03
+Fatch data from Mongo Database:
+router.get('<i>URL</i>', function(req, res, next){
+	var db = req.db;
+	db.collection('Post').find().toArray(function(err, docs){
+		console.log(docs);
+		if(err || !docs.length){
+			res.json({success:false, err:err});
+		}
+		else{
+			res.json(docs);
+		}
+	});
+});

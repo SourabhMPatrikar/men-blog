@@ -50,6 +50,19 @@ router.get('/api/post', function(req, res, next){
 	});
 });
 
+router.get('/api/postno9', function(req, res, next){
+	var db = req.db;
+	db.collection('Post').find({"category_id" : "9"}).toArray(function(err, docs){
+		console.log(docs);
+		if(err || !docs.length){
+			res.json({success:false,err:err});
+		}
+		else{
+			res.json(docs);
+		}
+	});
+});
+
 router.get('/sourabh', function(req, res, next){
 	var db = req.db;
 	db.collection('Post').find().toArray(function(err, docs){
