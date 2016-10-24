@@ -43,9 +43,9 @@ Delete POST
 
 
 
-###Part03 -[CRUD Operation]
-##Read Operation
-<h6>Fatch data from Mongo Database:<h6>
+### Part03 -[CRUD Operation]
+## Read Operation
+# Fatch data from Mongo Database:
 
 <br>
 router.get('<b><i>URL</i></b>', function(req, res, next){
