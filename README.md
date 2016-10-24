@@ -57,27 +57,18 @@ CRUD is a process of interaction with data base. The word 'CRUD' is a short form
 
 For this we need a dependence of router after that we have to use <code>get</code> for fetch the data from database, then we have to make a function for retrieve the data from database. start the function with required <code>URL</code> and <code>(req, res, next)</code> then create database connection then mention collection name and use <code>find()</code> for whole data and use <code>find({id, type})</code> for specific data and call as an toArray and handle the error.
 
-<br>
+```
 router.get('<b><i>URL</i></b>', function(req, res, next){
-<br>
 	var db = req.db;
-<br>
 	db.collection('<b><i>Collection Name</i></b>').find().toArray(function(err, docs){
-<br>
 		console.log(docs);
-<br>
 		if(err || !docs.length){
-<br>
 			res.json({success:false, err:err});
-<br>
 		}
-<br>
 		else{
-<br>
 			res.json(docs);
-<br>
+
 		}
-<br>
 	});
-<br>
 });
+```
