@@ -45,6 +45,13 @@ Delete POST
 
 # Part03 -[CRUD Operation]
 ## Read Operation
+
+CRUD Operation :-  CRUD is a process of interaction with data base. The word 'CRUD' is a short form of below activities
+- C (Create)
+- R (Read)
+- U (Update)
+- D (Delete)
+
 ### Fatch data from Mongo Database:
 
 <br>
