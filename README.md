@@ -44,10 +44,12 @@ Delete POST
 
 
 ##Part03
-Fatch data from Mongo Database:
-router.get('<i>URL</i>', function(req, res, next){
+<h3>Read Operation</h3>
+<h6>Fatch data from Mongo Database:<h6>
+
+router.get('<b><i>URL</i></b>', function(req, res, next){
 	var db = req.db;
-	db.collection('Post').find().toArray(function(err, docs){
+	db.collection('<b><i>Collection Name</i></b>').find().toArray(function(err, docs){
 		console.log(docs);
 		if(err || !docs.length){
 			res.json({success:false, err:err});
