@@ -46,7 +46,7 @@ Delete POST
 ##Part03
 <h3>Read Operation</h3>
 <h6>Fatch data from Mongo Database:<h6>
-<code>
+
 <br>
 router.get('<b><i>URL</i></b>', function(req, res, next){
 <br>
@@ -71,4 +71,3 @@ router.get('<b><i>URL</i></b>', function(req, res, next){
 	});
 <br>
 });
-</code>
