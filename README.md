@@ -44,16 +44,18 @@ Delete POST
 
 
 # Part03 -[CRUD Operation]
-## Read Operation
 
 ### CRUD Operation
 CRUD is a process of interaction with data base. The word 'CRUD' is a short form of below activities
-- C (Create) - <code>Create collection, data and records in database</code>
-- R (Read) - <code>Fatch the data from database and display in web page</code>
-- U (Update) - <code>Change specific data or set of data in database and web page</code>
-- D (Delete) - <code>Remove/Delete specific data from web page and database</code>
+- **C** (Create) - *Create collection, data and records in database*
+- **R** (Read) - *Fatch the data from database and display in web page*
+- **U** (Update) - *Change specific data or set of data in database and web page*
+- **D** (Delete) - *Remove/Delete specific data from web page and database*
 
-### Fatch data from Mongo Database:
+## Read Operation
+[**R** (Read) - *Fatch the data from database and display in web page*]
+
+For this we need a dependence of router after that we have to use <code>get<code> for fatch the data from database, then we have to make a function for retrieve the data from database. start the function with required URL and (req, res, next) then create database connection then mention collection name and use find() for whole data and use find({id, type}) for specific data and call as an toArray and handle the error.
 
 <br>
 router.get('<b><i>URL</i></b>', function(req, res, next){
