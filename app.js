@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
 // Connection url
-var url = 'mongodb://localhost:27017/men-blog';
+var url = 'mongodb://localhost:27017/blog';
 
 var routes = require('./routes/index');
 var users = require('./routes/users');

@@ -14,18 +14,18 @@ router.get('/post/:post_id', function(req, res, next) {
   res.render('postdetails', { title: 'Express' });
 });
 
-//router.get('/category', function(req, res, next){
-//	res.render('category',{title:'Express'});
-//});
-//
-//router.get('/category/:category_id',function(req, res, next){
-//	res.render('categorydetails',{title:'Express'});
-//});
+router.get('/category', function(req, res, next){
+	res.render('category',{title:'Express'});
+});
+
+router.get('/category/:category_id',function(req, res, next){
+	res.render('categorydetails',{title:'Express'});
+});
 
 
 router.get('/api/post', function(req, res, next){
 	var db = req.db;
-	db.collection('Post').find({"title" : "Zee TV"}).toArray(function(err, docs){
+	db.collection('post').find().toArray(function(err, docs){
 		console.log(docs);
 		if(err || !docs.length){
 			res.json({success:false, err:err});
@@ -36,9 +36,9 @@ router.get('/api/post', function(req, res, next){
 	});
 });
 
-router.get('/api/about',function(req, res, next){
+router.get('/api/post/:id', function(req, res, next){
 	var db = req.db;
-	db.collection('About').find().toArray(function(err, docs){
+	db.collection('post').find({id:req.params.id}).toArray(function(err, docs){
 		console.log(docs);
 		if(err || !docs.length){
 			res.json({success:false, err:err});
@@ -48,12 +48,25 @@ router.get('/api/about',function(req, res, next){
 		}
 	});
 });
+
+// router.get('/api/about',function(req, res, next){
+// 	var db = req.db;
+// 	db.collection('About').find().toArray(function(err, docs){
+// 		console.log(docs);
+// 		if(err || !docs.length){
+// 			res.json({success:false, err:err});
+// 		}
+// 		else{
+// 			res.json(docs);
+// 		}
+// 	});
+// });
 
 
 
 router.get('/api/category', function(req, res, next) {
   var db = req.db;
-  db.collection('Category').find().toArray(function(err, docs) {
+  db.collection('category').find().toArray(function(err, docs) {
 	  console.log(docs);
 	  if(err || !docs.length){
 		  res.json({
@@ -65,10 +78,25 @@ router.get('/api/category', function(req, res, next) {
 	  }
   });  
 });
-router.get('/api/categoryy', function(req, res, next) {
+router.get('/api/category/:id', function(req, res, next) {
+  var db = req.db;
+  console.log({id:req.params.id});
+  db.collection('category').find({id:req.params.id}).toArray(function(err, docs) {
+	  console.log(docs);
+	  if(err || !docs.length){
+		  res.json({
+			  success: false,
+			  err : err
+		  });
+	  }else{
+		  res.json(docs);
+	  }
+  });  
+});
+router.post('/api/category', function(req, res, next) {
 	//alert('Hi');
   var db = req.db;
-  db.collection('Category').insertOne({"id" : "13", "name" : "Thullu", "url" : "thullu", "title" : "Done"})
+  db.collection('category').insertOne({"id" : "14", "name" : "Machinics", "url" : "machinics", "title" : "Machinical"}, function(err, docs){
 	  console.log(docs);
 	  if(err || !docs.length){
 		  res.json({
@@ -79,6 +107,7 @@ router.get('/api/categoryy', function(req, res, next) {
 		  res.json(docs);
 	  }
   }); 
+ });
 //db.collection.insert({a:1}, {"id" : "11", "name" : "Accounting", "url" : "accounting", "title" : "Account and Analysis"}, function(err, result){
 //db.createCollection('Category').find({"id" : "11", "name" : "Accounting", "url" : "accounting", "title" : "Account and Analysis"}).toArray(function(err, docs) {
   

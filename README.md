@@ -81,7 +81,11 @@ router.get('URL', function(req, res, next){
 
 
 
-
+Angular task
+----------------------
+- Fetch Post By ID
+- Category List
+- Category Detail
 
 
 
