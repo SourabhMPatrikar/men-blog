@@ -77,7 +77,7 @@ router.get('URL', function(req, res, next){
 3) db connection [var db = req.db]
 4) db.collection('Collection Name')
 5) find() or find({"id":"id number"})
-6) toArray(function(err, docs){ console log display, error handleing and required checks });
+6) toArray(function(err, docs){ console log display, error handling and required checks });
 
 
 
