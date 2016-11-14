@@ -87,6 +87,12 @@ Angular task
 - Category List
 - Category Detail
 
+/api/postByCategory/1
+- API to fetch post by category_id
+- Category Controller Creation
+- Service to fetch post by category id
+- Display
+
 
 
 

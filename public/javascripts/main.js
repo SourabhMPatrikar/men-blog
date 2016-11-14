@@ -7,14 +7,37 @@
 			controller : 'MainController',
 			templateUrl : 'templates/post.html'
 		})
-		.when('/post/:id', {
+		.when('/api/post/:id', {
 			controller : 'PostController',
 			templateUrl : 'templates/postdetail.html'
 		})
+		.when('/api/postByCategory/:id', {
+			controller : 'PostByCategoryController',
+			templateUrl : 'templates/post.html'
+		})
+		.when('/api/postByPublisher/:id',{
+			controller 	: 'PostByPublisherController',
+			templateUrl	: 'templates/post.html'
+		})
+		.when('/api/postByGroup/:id',{
+			controller 	: 'PostByGroupController',
+			templateUrl	: 'templates/post.html'
+		})
+		.when('/api/about',{
+			controller 	: 'AboutController',
+			templateUrl	: 'templates/about.html'
+		})
+		.when('/api/postByDate',{
+			controller 	: 'PostByDateController',
+			templateUrl	: 'templates/post.html'
+		})
 		.otherwise({
 			redirectTo : '/'
+
 		});
 	}]);
+
+	//#/year/:year/month/:month
 
 	app.controller('MainController',['$scope', 'ApiService', function($scope, ApiService) {
 		$scope.posts = [];
@@ -23,13 +46,86 @@
 			console.log(response);
 			$scope.posts = response.data;
 		})
+	}]);
+	app.controller('PostController',['$scope', 'ApiService','$routeParams', function($scope, ApiService, $routeParams){
+		$scope.postdetails = [];
 
+		var id = $routeParams.id;
+		ApiService.fetchPostDetails(id).then(function(response){
+			console.log(response);
+			$scope.postdetails = response.data;
+		})
+	}]);
+	app.controller('PostByCategoryController',['$scope', 'ApiService','$routeParams', function($scope, ApiService, $routeParams){
+		$scope.posts = [];
+
+		var id = $routeParams.id;
+		ApiService.fetchPostByCategory(id).then(function(response){
+			console.log(response);
+			$scope.posts = response.data;
+		});
+	}]);
+	app.controller('PostByPublisherController',['$scope', 'ApiService', '$routeParams', function($scope, ApiService, $routeParams){
+		$scope.posts = [];
+
+		var id = $routeParams.id;
+		ApiService.fetchPostByPublisher(id).then(function(response){
+			console.log(response);
+			$scope.posts = response.data;
+		});
+	}]);
+	app.controller('PostByGroupController',['$scope', 'ApiService', '$routeParams', function($scope, ApiService, $routeParams){
+		$scope.posts = [];
+
+		var id = $routeParams.id;
+		ApiService.fetchPostByGroup(id).then(function(response){
+			console.log(response);
+			$scope.posts = response.data;
+		});
+	}]);
+	app.controller('AboutController',['$scope', 'ApiService', '$routeParams', function($scope, ApiService, $routeParams){
+		$scope.about = [];
+
+		var id = $routeParams.id;
+		ApiService.fetchAbout(id).then(function(response){
+			console.log(response);
+			$scope.about = response.data;
+		});
+	}]);
+	app.controller('PostByDateController',['$scope', 'ApiService', '$routeParams', function($scope, ApiService, $routeParams){
+		$scope.posts = [];
+
+		var id = $routeParams.id;
+		ApiService.fetchPostyDate(id).then(function(response){
+			console.log(response);
+			$scope.posts = response.data;
+		});
 	}]);
 
 	app.service('ApiService', ['$http', function ($http) {
 		this.fetchPosts = function () {
 			return $http.get('/api/post');
+		};
+
+		this.fetchPostDetails = function(id){
+			return $http.get('/api/post/'+id);
 		}
-	}])
+
+		this.fetchPostByCategory = function(id){
+			return $http.get('/api/postByCategory/'+id);
+		}
+		this.fetchPostByPublisher = function(id){
+			return $http.get('/api/postByPublisher/'+id);
+		}
+		this.fetchPostByGroup = function(id){
+			return $http.get('/api/postByGroup/'+id);
+		}
+		this.fetchAbout = function(){
+			return $http.get('/api/about');
+		}
+		this.fetchAbout = function(){
+			return $http.get('/api/postByDate');
+		}
+	}]);
 
 })();
