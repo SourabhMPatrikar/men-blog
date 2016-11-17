@@ -31,14 +31,26 @@ router.get('/', function(req, res, next) {
 						});
 					}else{
 
-						db.collection('about').find().toArray(function(err, about) {
-							if(err || !about.length){
+						db.collection('about').find().toArray(function(err, docs) {
+							if(err || !docs.length){
 								res.json({
 								  success: false,
 								  err : err
 								});
 							}else{
-								res.render('index', { title: 'Express', about: about, archives: archives, publishers : publishers, categories : categories });
+
+								// db.collection('archive').find().toArray(function(err, archive) {
+								// 	if(err || !archive.length){
+								// 		res.json({
+								// 		  success: false,
+								// 		  err : err
+								// 		});
+								// 	}else{
+								// 		res.render('index', { title: 'Express', about: about, archives: archives, publishers : publishers, categories : categories });
+								// 	}
+
+								// });
+								res.render('index', { title: 'Express', about: docs, archives: archives, publishers : publishers, categories : categories });
 							}
 						});
 					}
@@ -137,9 +149,21 @@ router.get('/api/about', function(req, res, next){
 		}
 	});
 });
-router.get('/api/postByDate', function(req, res, next){
+router.get('/api/postByYear/:id', function(req, res, next){
 	var db = req.db;
-	db.collection('postByDate').find().toArray(function(err,docs){
+	db.collection('post').find({id:req.params.id}).toArray(function(err,docs){
+		console.log(docs);
+		if(err || !docs.length){
+			res.json({success:false, err:err});
+		}
+		else{
+			res.json(docs);
+		}
+	});
+});
+router.get('/api/postByDate/:id', function(req, res, next){
+	var db = req.db;
+	db.collection('post').find({id:req.params.id}).toArray(function(err,docs){
 		console.log(docs);
 		if(err || !docs.length){
 			res.json({success:false, err:err});

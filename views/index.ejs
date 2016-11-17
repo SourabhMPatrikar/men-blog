@@ -77,7 +77,7 @@
             </ol>
           </div>
           <div class="sidebar-module">
-            <h4>Archives</h4>
+            <h4>Group</h4>
             <ol class="list-unstyled">
             <% for(var i=0; i<archives.length; i++) { %>
               <li>
@@ -87,24 +87,28 @@
             </ol>
           </div>
           <div class="sidebar-module">
-            <h4>Groups</h4>
+            <h4>Archives</h4>
             <ol class="list-unstyled">
             <% for(var i=0; i<archives.length; i++) { %>
               <li>
                 <a href="/#/api/postByYear/<%= archives[i].id %>"><%= archives[i].onYear %></a>
+
+
+
                   <ol class="list-unstyled">
-                  <% for(var j=0; j<archives.length; j++) { %>
                     <li>
-                      <a href="/#/api/postByDate/<%= archives[i].id %>"><%= archives[i].onDate %></a>
+                      <a href="/#/api/postByDate/<%= archives[i].id %>"><%= archives[i].OnDate %></a>
                     </li>
-                  <% } %>
                   </ol>
+
 
 
 
               </li>
             <% } %>
             </ol>
+
+
           </div>
         </div><!-- /.blog-sidebar -->
 
