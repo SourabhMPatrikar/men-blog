@@ -31,7 +31,7 @@
 			controller 	: 'PostByYearController',
 			templateUrl	: 'templates/post.html'
 		})
-		.when('/api/postByDate',{
+		.when('/api/postByDate/:month',{
 			controller 	: 'PostByDateController',
 			templateUrl	: 'templates/post.html'
 		})

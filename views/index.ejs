@@ -81,7 +81,7 @@
             <ol class="list-unstyled">
             <% for(var i=0; i<archives.length; i++) { %>
               <li>
-                <a href="/#/api/postByGroup/<%= archives[i].id %>"><%= archives[i].title %></a>
+                <a href="/#/api/postByGroup/<%= archives[i] %>"><%= archives[i].title %></a>
               </li>
             <% } %>
             </ol>
@@ -91,7 +91,7 @@
             <ol class="list-unstyled">
             <% for(var i=0; i<archives.length; i++) { %>
               <li>
-                <a href="/#/api/postByYear/<%= archives[i].id %>"><%= archives[i].onYear %></a>
+                <a href="/#/api/postByYear/<%= archives[i] %>"><%= archives[i] %></a>
 
 
 

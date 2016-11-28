@@ -5,10 +5,12 @@ var router = express.Router();
 // router.get('/', function(req, res, next) {
 // 	res.render('index', { title: 'Express'});
 // });
+//router.get('/', getCategory, getPublisher, render)
 router.get('/', function(req, res, next) {
   var db = req.db;
   db.collection('category').find().toArray(function(err, categories) {
 	  if(err || !categories.length){
+	  	  console.log('category err')
 		  res.json({
 			  success: false,
 			  err : err
@@ -17,22 +19,26 @@ router.get('/', function(req, res, next) {
 
 	  	db.collection('publisher').find().toArray(function(err, publishers) {
 			if(err || !publishers.length){
+			  console.log('publisher err')
 			  res.json({
 				  success: false,
 				  err : err
 			  });
 			}else{
 
-				db.collection('archive').find().toArray(function(err, archives) {
-					if(err || !archives.length){
+				db.collection('post').distinct('onYear',{}, function(err, years) {
+					
+					if(err || !years.length){
+						console.log('years err')
 						res.json({
 						  success: false,
 						  err : err
 						});
 					}else{
 
-						db.collection('about').find().toArray(function(err, docs) {
+						db.collection('staticpage').find().toArray(function(err, docs) {
 							if(err || !docs.length){
+								console.log('about err')
 								res.json({
 								  success: false,
 								  err : err
@@ -50,7 +56,7 @@ router.get('/', function(req, res, next) {
 								// 	}
 
 								// });
-								res.render('index', { title: 'Express', about: docs, archives: archives, publishers : publishers, categories : categories });
+								res.render('index', { title: 'Express', about: docs, archives: years, publishers : publishers, categories : categories });
 							}
 						});
 					}
@@ -151,16 +157,20 @@ router.get('/api/about', function(req, res, next){
 });
 router.get('/api/postByYear/:id', function(req, res, next){
 	var db = req.db;
+	var test = require('assert');
+					
 	db.collection('post').find({id:req.params.id}).toArray(function(err,docs){
-		console.log(docs);
-		if(err || !docs.length){
-			res.json({success:false, err:err});
-		}
-		else{
-			res.json(docs);
-		}
+			test.deepEqual([0, 1, 2, 3], docs.sort());
+
+			console.log(docs);
+			if(err || !docs.length){
+				res.json({success:false, err:err});
+			}
+			else{
+				res.json(docs);
+			}
+		});
 	});
-});
 router.get('/api/postByDate/:id', function(req, res, next){
 	var db = req.db;
 	db.collection('post').find({id:req.params.id}).toArray(function(err,docs){
